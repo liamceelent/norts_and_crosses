@@ -46,4 +46,4 @@ while -1 in positions.values() and not end:
             chosenbot.append(a)
             positions[a] = 0
         end = end | win_check(win_options, chosenplayer, choice, 0)
-    
+    print("hi")
