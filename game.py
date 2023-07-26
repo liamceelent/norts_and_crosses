@@ -38,13 +38,15 @@ def edit_table(choice, table, player):
 
 chosenbot = []
 chosenplayer = []
-end = False
 
-while -1 in positions.values() and not end:
+while -1 in positions.values():
     print("please pick a location")
     for i in options(positions):
         print(i)
     choice = int(input())
+    while choice not in options(positions):
+        print("pls")
+        choice = int(input())
     chosenplayer.append(choice)
     positions[choice] = 1
     table = edit_table(choice, table, "player")
@@ -52,13 +54,13 @@ while -1 in positions.values() and not end:
         break
 
 
-    while True:
-        b  = randint(0, len(options(positions)))
-        a = options(positions)[b-1]
-        chosenbot.append(a)
-        positions[a] = 0
-        end = end | win_check(win_options, chosenplayer, choice, 0)
-        table = edit_table(a, table, "bot")
+    b  = randint(0, len(options(positions)))
+    a = options(positions)[b-1]
+    chosenbot.append(a)
+    positions[a] = 0
+    if win_check(win_options, chosenplayer, choice, 0):
         break
+    table = edit_table(a, table, "bot")
+
 
     print_table(table)
